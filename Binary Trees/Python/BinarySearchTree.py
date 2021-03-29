@@ -33,7 +33,7 @@ class BinaryTree:
                         break
                     current = current.left_child
 
-    def find(self, value):
+    def contains(self, value):
         current = self.root
         while current:
             if current.value < value:
@@ -45,6 +45,37 @@ class BinaryTree:
         return False
 
 
+def pre_order_traversal(root):
+    if root is None:
+        return
+    print(root.value)
+    pre_order_traversal(root.left_child)
+    pre_order_traversal(root.right_child)
+
+
+def in_order_traversal(root):
+    if root is None:
+        return
+    in_order_traversal(root.left_child)
+    print(root.value)
+    in_order_traversal(root.right_child)
+
+
+def post_order_traversal(root):
+    if root is None:
+        return
+    post_order_traversal(root.left_child)
+    post_order_traversal(root.right_child)
+    print(root.value)
+
+
 tree = BinaryTree()
-for i in [7, 3, 4, 9, 10]:
+for i in [7, 4, 9, 1, 6, 8, 10]:
     tree.insert(i)
+
+print("#######Pre Order Traversal########")
+pre_order_traversal(tree.root)
+print("#######In Order Traversal########")
+in_order_traversal(tree.root)
+print("#######Post Order Traversal########")
+post_order_traversal(tree.root)
