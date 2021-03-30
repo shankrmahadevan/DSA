@@ -72,6 +72,30 @@ public class BinaryTree {
         System.out.println("inorder: ");
         printOrder(post);
     }
+
+    public void levelorderTraversal(TreeNode root) {
+        List<List<Integer>> levels = new ArrayList<>();
+        Deque<TreeNode> q = new LinkedList<>();
+        TreeNode curr = root;
+        q.offer(curr);
+        while (!q.isEmpty()) {
+            int size = q.size();
+            List<Integer> level = new ArrayList<>();
+            for (int i = size; i > 0; i--) {
+                curr = q.poll();
+                level.add(curr.val);
+                if (curr.left != null) {
+                    q.offer(curr.left);
+                }
+                if (curr.right != null) {
+                    q.offer(curr.right);
+                }
+            }
+            levels.add(level);
+        }
+        System.out.println("Level order traversal");
+        printLevelOrder(levels);
+    }
     
     public void printOrder(List<Integer> arr) {
         for (int i : arr) {
@@ -79,6 +103,16 @@ public class BinaryTree {
         }
         System.out.println();
     }
+
+    public void printLevelOrder(List<List<Integer>> levels) {
+        for (List<Integer> level : levels) {
+            for (int i : level) {
+                System.out.print(i + " ");
+            }
+            System.out.println();
+        }
+    }
+
     public static void main(String[] args) {
         BinaryTree t = new BinaryTree();
         TreeNode root = new TreeNode(1);
@@ -89,5 +123,6 @@ public class BinaryTree {
         t.inorderTraversal(root);
         t.preorderTraversal(root);
         t.postorderTraversal(root);
+        t.levelorderTraversal(root);
     }
 }
