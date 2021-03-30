@@ -10,8 +10,8 @@ class Solution:
         self.result = []
 
     def zigzagLevelOrder(self, root: TreeNode) -> List[List[int]]:
-        for i in range(self.height(root)+1):
-            if i%2==0:
+        for i in range(self.height(root) + 1):
+            if i % 2 == 0:
                 self.zigzageven(root, i)
             else:
                 self.zigzagodd(root, i)
@@ -36,16 +36,13 @@ class Solution:
             return
         if distance == 0:
             self.temp.append(root.val)
-        self.zigzagodd(root.right, distance-1)
-        self.zigzagodd(root.left, distance-1)
+        self.zigzagodd(root.right, distance - 1)
+        self.zigzagodd(root.left, distance - 1)
 
     def zigzageven(self, root, distance):
         if root is None:
             return
         if distance == 0:
             self.temp.append(root.val)
-        self.zigzageven(root.left, distance-1)
-        self.zigzageven(root.right, distance-1)
-
-
-        
+        self.zigzageven(root.left, distance - 1)
+        self.zigzageven(root.right, distance - 1)
