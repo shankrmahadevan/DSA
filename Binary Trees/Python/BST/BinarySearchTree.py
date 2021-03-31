@@ -13,9 +13,6 @@ class Node:
     def isLeafNode(self):
         return not (self.hasLeftChild() or self.hasRightChild())
 
-    def isValid(self):
-        return self is not None
-
 
 class BinarySearchTree:
     def __init__(self):
